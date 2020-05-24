@@ -6,51 +6,51 @@
 Summary:	A blazingly fast HTML combinator library for Haskell
 Summary(pl.UTF-8):	Biblioteka olśniewająco szybkiego kombinatora HTML dla Haskella
 Name:		ghc-%{pkgname}
-Version:	0.6.1.2
+Version:	0.9.1.2
 Release:	1
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/blaze-html
 Source0:	http://hackage.haskell.org/package/%{pkgname}-%{version}/%{pkgname}-%{version}.tar.gz
-# Source0-md5:	262a4753fc37f6a8b8762f2b1f6d1bab
+# Source0-md5:	a1b7997875d18d26b13de20aa032e2ec
 URL:		http://hackage.haskell.org/package/blaze-html
 BuildRequires:	ghc >= 6.12.3
 BuildRequires:	ghc-base >= 4
 BuildRequires:	ghc-base < 5
-BuildRequires:	ghc-blaze-builder >= 0.2
-BuildRequires:	ghc-blaze-builder < 0.4
-BuildRequires:	ghc-blaze-markup >= 0.5.1
-BuildRequires:	ghc-blaze-markup < 0.6
+BuildRequires:	ghc-blaze-builder >= 0.3
+BuildRequires:	ghc-blaze-builder < 0.5
+BuildRequires:	ghc-blaze-markup >= 0.8
+BuildRequires:	ghc-blaze-markup < 0.9
 BuildRequires:	ghc-bytestring >= 0.9
 BuildRequires:	ghc-bytestring < 0.11
 BuildRequires:	ghc-text >= 0.10
-BuildRequires:	ghc-text < 1.1
+BuildRequires:	ghc-text < 1.3
 %if %{with prof}
 BuildRequires:	ghc-prof
 BuildRequires:	ghc-base-prof >= 4
 BuildRequires:	ghc-base-prof < 5
-BuildRequires:	ghc-blaze-builder-prof >= 0.2
-BuildRequires:	ghc-blaze-builder-prof < 0.4
-BuildRequires:	ghc-blaze-markup-prof >= 0.5.1
-BuildRequires:	ghc-blaze-markup-prof < 0.6
+BuildRequires:	ghc-blaze-builder-prof >= 0.3
+BuildRequires:	ghc-blaze-builder-prof < 0.5
+BuildRequires:	ghc-blaze-markup-prof >= 0.8
+BuildRequires:	ghc-blaze-markup-prof < 0.9
 BuildRequires:	ghc-bytestring-prof >= 0.9
 BuildRequires:	ghc-bytestring-prof < 0.11
 BuildRequires:	ghc-text-prof >= 0.10
-BuildRequires:	ghc-text-prof < 1.1
+BuildRequires:	ghc-text-prof < 1.3
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.608
 Requires(post,postun):	/usr/bin/ghc-pkg
 %requires_eq	ghc
 Requires:	ghc-base >= 4
 Requires:	ghc-base < 5
-Requires:	ghc-blaze-builder >= 0.2
-Requires:	ghc-blaze-builder < 0.4
-Requires:	ghc-blaze-markup >= 0.5.1
-Requires:	ghc-blaze-markup < 0.6
+Requires:	ghc-blaze-builder >= 0.3
+Requires:	ghc-blaze-builder < 0.5
+Requires:	ghc-blaze-markup >= 0.8
+Requires:	ghc-blaze-markup < 0.9
 Requires:	ghc-bytestring >= 0.9
 Requires:	ghc-bytestring < 0.11
 Requires:	ghc-text >= 0.10
-Requires:	ghc-text < 1.1
+Requires:	ghc-text < 1.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # debuginfo is not useful for ghc
@@ -74,14 +74,14 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ghc-base-prof >= 4
 Requires:	ghc-base-prof < 5
-Requires:	ghc-blaze-builder-prof >= 0.2
-Requires:	ghc-blaze-builder-prof < 0.4
-Requires:	ghc-blaze-markup-prof >= 0.5.1
-Requires:	ghc-blaze-markup-prof < 0.6
+Requires:	ghc-blaze-builder-prof >= 0.3
+Requires:	ghc-blaze-builder-prof < 0.5
+Requires:	ghc-blaze-markup-prof >= 0.8
+Requires:	ghc-blaze-markup-prof < 0.9
 Requires:	ghc-bytestring-prof >= 0.9
 Requires:	ghc-bytestring-prof < 0.11
 Requires:	ghc-text-prof >= 0.10
-Requires:	ghc-text-prof < 1.1
+Requires:	ghc-text-prof < 1.3
 
 %description prof
 Profiling %{pkgname} library for GHC.  Should be installed when
@@ -144,39 +144,52 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/HSblaze-html-%{version}.o
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSblaze-html-%{version}.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSblaze-html-%{version}-*.so
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSblaze-html-%{version}-*.a
+%exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSblaze-html-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html/Renderer
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html/Renderer/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html/Renderer/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/FrameSet
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/FrameSet/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/FrameSet/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/Strict
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/Strict/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/Strict/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/Transitional
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/Transitional/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/Transitional/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html5
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html5/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html5/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/FrameSet
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/FrameSet/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/FrameSet/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/Strict
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/Strict/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/Strict/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/Transitional
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/Transitional/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml1/Transitional/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml5
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml5/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/XHtml5/*.dyn_hi
 
 %if %{with prof}
 %files prof
 %defattr(644,root,root,755)
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSblaze-html-%{version}_p.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSblaze-html-%{version}-*_p.a
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/*.p_hi
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html/Renderer/*.p_hi
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Text/Blaze/Html4/*.p_hi
