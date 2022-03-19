@@ -7,7 +7,7 @@ Summary:	A blazingly fast HTML combinator library for Haskell
 Summary(pl.UTF-8):	Biblioteka olśniewająco szybkiego kombinatora HTML dla Haskella
 Name:		ghc-%{pkgname}
 Version:	0.9.1.2
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/blaze-html
